@@ -1,4 +1,4 @@
-# MuJoCo Model for Horizontal Vibration of Ultra-High-Speed Elevator (DFCCA Control)
+# MuJoCo Model for Horizontal Vibration of Ultra-High-Speed Elevator
 ## Model Introduction
 -**Physical System**: A five-body coupling system consisting of guide rails, guide shoes, car frame, shock absorbers, and elevator car.
 ## Quick Start
