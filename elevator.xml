@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mujoco model="elevator">
+    <!-- 出图用 -->
+    <visual>
+        <global offwidth="7680" offheight="4320"/>
+      </visual>
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="1 1 1" rgb2="1 1 1" width="256" height="1536"/>
+    </asset>
+
+    <compiler angle="radian" coordinate="local"/>
+    <!--使用弧度作为角度单位, 局部坐标系-->
+    
+    <option gravity="0 0 -9.81" integrator="RK4" timestep="0.001"/>
+    <!-- 重力加速度, 积分器, 时间步长 -->
+    
+    <worldbody>
+        <!-- 地面 -->
+        <geom name="ground" type="plane" size="5 5 0.1" pos="0 0 -0.1" rgba="1 1 1 0.1"/>
+
+        <!-- ######################################### 导轨 ######################################### -->
+        <!-- 导轨1 -->
+        <body name="rail1" pos="1.5 0 2.25">
+            <joint name="rail_joint_1" type="slide" axis="1 0 0" range="-0.01 0.01"/>
+            <geom type="box" size="0.02 0.1 0.75" pos="0.1 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <geom type="box" size="0.03 0.04 0.75" pos="0.08 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <geom type="box" size="0.06 0.01 0.75" pos="0 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <site name="rail_1" pos="-0.06 0 0" size="0.01" rgba="0 1 0 1"/>
+        </body>
+        <!-- 导轨2 -->
+        <body name="rail2" pos="1.5 0 0.75">
+            <joint name="rail_joint_2" type="slide" axis="1 0 0" range="-0.01 0.01"/>
+            <geom type="box" size="0.02 0.1 0.75" pos="0.1 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <geom type="box" size="0.03 0.04 0.75" pos="0.08 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <geom type="box" size="0.06 0.01 0.75" pos="0 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <site name="rail_2" pos="-0.06 0 0" size="0.01" rgba="0 1 0 1"/>
+        </body>
+        <!-- 导轨3 -->
+        <body name="rail3" pos="-1.5 0 2.25">
+            <joint name="rail_joint_3" type="slide" axis="1 0 0" range="-0.01 0.01"/>
+            <geom type="box" size="0.02 0.1 0.75" pos="-0.1 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <geom type="box" size="0.03 0.04 0.75" pos="-0.08 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <geom type="box" size="0.06 0.01 0.75" pos="0 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <site name="rail_3" pos="0.06 0 0" size="0.01" rgba="0 1 0 1"/>
+        </body>
+        <!-- 导轨4 -->
+        <body name="rail4" pos="-1.5 0 0.75">
+            <joint name="rail_joint_4" type="slide" axis="1 0 0" range="-0.01 0.01"/>
+            <geom type="box" size="0.02 0.1 0.75" pos="-0.1 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <geom type="box" size="0.03 0.04 0.75" pos="-0.08 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <geom type="box" size="0.06 0.01 0.75" pos="0 0 0" density="7850" rgba="0.8 0.5 0.8 1"/>
+            <site name="rail_4" pos="0.06 0 0" size="0.01" rgba="0 1 0 1"/>
+        </body>
+
+        <!-- ######################################### 导轮 ######################################### -->
+
+        <!-- 导轮1 -->
+        <body name="guide_wheel1" pos="1.4 0 2.25">
+            <joint name="guide_wheel_joint_1" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="sphere" size="0.04" density="500" rgba="0 0 1 1"/>
+        </body>
+        <!-- 导轮2 -->
+        <body name="guide_wheel2" pos="1.4 0 0.75">
+            <joint name="guide_wheel_joint_2" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="sphere" size="0.04" density="500" rgba="0 0 1 1"/>
+        </body>
+        <!-- 导轮3 -->
+        <body name="guide_wheel3" pos="-1.4 0 2.25">
+            <joint name="guide_wheel_joint_3" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="sphere" size="0.04" density="500" rgba="0 0 1 1"/>
+        </body>
+        <!-- 导轮4 -->
+        <body name="guide_wheel4" pos="-1.4 0 0.75">
+            <joint name="guide_wheel_joint_4" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="sphere" size="0.04" density="500" rgba="0 0 1 1"/>
+        </body>
+
+        <!-- ######################################## 导靴 ##################################### -->
+        <!-- 导靴1 -->
+        <body name="guide_boot1" pos="1.3 0 2.25">
+            <joint name="guide_boot_joint_1" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="box" size="0.05 0.1 0.1" density="5000" rgba="0 0 1 1"/>
+            <site name="guide_shoe1" pos="0.05 0 0" size="0.01" rgba="0 1 0 1"/>
+        </body>
+        <!-- 导靴2 -->
+        <body name="guide_boot2" pos="1.3 0 0.75">
+            <joint name="guide_boot_joint_2" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="box" size="0.05 0.1 0.1" density="5000" rgba="0 0 1 1"/>
+            <site name="guide_shoe2" pos="0.05 0 0" size="0.01" rgba="0 1 0 1"/>
+        </body>
+        <!-- 导靴3 -->
+        <body name="guide_boot3" pos="-1.3 0 2.25">
+            <joint name="guide_boot_joint_3" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="box" size="0.05 0.1 0.1" density="5000" rgba="0 0 1 1"/>
+            <site name="guide_shoe3" pos="-0.05 0 0" size="0.01" rgba="0 1 0 1"/>
+        </body>
+        <!-- 导靴4 -->
+        <body name="guide_boot4" pos="-1.3 0 0.75">
+            <joint name="guide_boot_joint_4" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="box" size="0.05 0.1 0.1" density="5000" rgba="0 0 1 1"/>
+            <site name="guide_shoe4" pos="-0.05 0 0" size="0.01" rgba="0 1 0 1"/>
+        </body>
+
+        <!-- ######################################## 轿架 ######################################## -->
+        <!-- 轿架 -->
+        <body name="frame" pos="0 0 1.5">
+            <joint name="frame_x" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <joint name="frame_r" type="hinge" axis="0 1 0" range="-0.1 0.1"/>
+            <geom type="box" size="1.1 0.1 0.1" pos="0 0 1.1" density="300" rgba="1 0 0 1"/>
+            <geom type="box" size="1.1 0.1 0.1" pos="0 0 -1.1" density="300" rgba="1 0 0 1"/>
+            <geom type="box" size="0.1 0.1 1.2" pos="1.15 0 0" density="300" rgba="1 0 0 1"/>
+            <geom type="box" size="0.1 0.1 1.2" pos="-1.15 0 0" density="300" rgba="1 0 0 1"/>
+            <site name="frame1" pos="1.25 0 0.75" size="0.01" rgba="1 1 0 1"/>
+            <site name="frame2" pos="1.25 0 -0.75" size="0.01" rgba="1 1 0 1"/>
+            <site name="frame3" pos="-1.25 0 0.75" size="0.01" rgba="1 1 0 1"/>
+            <site name="frame4" pos="-1.25 0 -0.75" size="0.01" rgba="1 1 0 1"/>
+            <site name="frame5" pos="1.05 0 0.55" size="0.01" rgba="1 1 0 1"/>
+            <site name="frame6" pos="1.05 0 -0.55" size="0.01" rgba="1 1 0 1"/>
+            <site name="frame7" pos="-1.05 0 0.55" size="0.01" rgba="1 1 0 1"/>
+            <site name="frame8" pos="-1.05 0 -0.55" size="0.01" rgba="1 1 0 1"/>
+            <site name="frame0" pos="0 0 0" size="0.01" rgba="1 1 0 1"/>
+        </body>
+
+        <!-- ######################################## 减震垫 ######################################## -->
+        <!-- 减震垫1 -->
+        <body name="shock_absorber1" pos="1 0 2.25">
+            <joint name="shock_absorber_joint_1" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="box" size="0.05 0.1 0.1" pos="0 0 -0.2" density="5000" rgba="0 0 1 1"/>
+        </body>
+        <!-- 减震垫2 -->
+        <body name="shock_absorber2" pos="1 0 0.75">
+            <joint name="shock_absorber_joint_2" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="box" size="0.05 0.1 0.1" pos="0 0 0.2" density="5000" rgba="0 0 1 1"/>
+        </body>
+        <!-- 减震垫3 -->
+        <body name="shock_absorber3" pos="-1 0 2.25">
+            <joint name="shock_absorber_joint_3" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="box" size="0.05 0.1 0.1" pos="0 0 -0.2" density="5000" rgba="0 0 1 1"/>
+        </body>
+        <!-- 减震垫4 -->
+        <body name="shock_absorber4" pos="-1 0 0.75">
+            <joint name="shock_absorber_joint_4" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <geom type="box" size="0.05 0.1 0.1" pos="0 0 0.2" density="5000" rgba="0 0 1 1"/>
+        </body>
+
+        <!-- ######################################### 轿厢 ######################################### -->
+        <!-- 轿厢 -->
+        <body name="car" pos="0 0 1.5">
+            <joint name="car_x" type="slide" axis="1 0 0" range="-0.1 0.1"/>
+            <joint name="car_r" type="hinge" axis="0 1 0" range="-0.1 0.1"/>
+            <geom type="box" size="0.9 0.75 0.9" density="300" rgba="0 1 0 1"/>
+            <site name="car1" pos="0.9 0 0.55" size="0.01" rgba="1 1 0 1"/>
+            <site name="car2" pos="0.9 0 -0.55" size="0.01" rgba="1 1 0 1"/>
+            <site name="car3" pos="-0.9 0 0.55" size="0.01" rgba="1 1 0 1"/>
+            <site name="car4" pos="-0.9 0 -0.55" size="0.01" rgba="1 1 0 1"/>
+            <site name="car0" pos="0 0 0" size="0.01" rgba="1 1 0 1"/>
+        </body>
+
+    </worldbody>
+
+    <!-- 被动减振系统 -->
+    <tendon>
+        <!-- 减振垫 -->
+        <spatial name="shock_absorber1" stiffness="20000" damping="500">
+            <site site="frame1"/>
+            <site site="car1"/>
+        </spatial>
+        <spatial name="shock_absorber2" stiffness="20000" damping="500">
+            <site site="frame2"/>
+            <site site="car2"/>
+        </spatial>
+        <spatial name="shock_absorber3" stiffness="20000" damping="500">
+            <site site="frame3"/>
+            <site site="car3"/>
+        </spatial>
+        <spatial name="shock_absorber4" stiffness="20000" damping="500">
+            <site site="frame4"/>
+            <site site="car4"/>
+        </spatial>
+        <!-- 导轮 -->
+        <spatial name="guide_wheel1" stiffness="20000" damping="500">
+            <site site="rail_1"/>
+            <site site="guide_shoe1"/>
+        </spatial>
+        <spatial name="guide_wheel2" stiffness="20000" damping="500">
+            <site site="rail_2"/>
+            <site site="guide_shoe2"/>
+        </spatial>
+        <spatial name="guide_wheel3" stiffness="20000" damping="500">
+            <site site="rail_3"/>
+            <site site="guide_shoe3"/>
+        </spatial>
+        <spatial name="guide_wheel4" stiffness="20000" damping="500">
+            <site site="rail_4"/>
+            <site site="guide_shoe4"/>
+        </spatial>
+        <!-- 导靴 -->
+        <spatial name="guide_boot1" stiffness="20000" damping="500">
+            <site site="guide_shoe1"/>
+            <site site="frame1"/>
+        </spatial>
+        <spatial name="guide_boot2" stiffness="20000" damping="500">
+            <site site="guide_shoe2"/>
+            <site site="frame2"/>
+        </spatial>
+        <spatial name="guide_boot3" stiffness="20000" damping="500">
+            <site site="guide_shoe3"/>
+            <site site="frame3"/>
+        </spatial>
+        <spatial name="guide_boot4" stiffness="20000" damping="500">
+            <site site="guide_shoe4"/>
+            <site site="frame4"/>
+        </spatial>
+
+    </tendon>
+    
+    <!-- 外部输入 -->
+    <actuator>
+
+        <!-- 主动导靴 -->
+        <motor name="z1" joint="guide_boot_joint_1" ctrlrange="-300 300" ctrllimited="true"/>
+        <motor name="z2" joint="guide_boot_joint_2" ctrlrange="-300 300" ctrllimited="true"/>
+        <motor name="z3" joint="guide_boot_joint_3" ctrlrange="-300 300" ctrllimited="true"/>
+        <motor name="z4" joint="guide_boot_joint_4" ctrlrange="-300 300" ctrllimited="true"/>
+
+        <!-- 导轨激励 -->
+        <position name="rail1" joint="rail_joint_1" kp="100" />
+        <position name="rail2" joint="rail_joint_2" kp="100" />
+        <position name="rail3" joint="rail_joint_3" kp="100" />
+        <position name="rail4" joint="rail_joint_4" kp="100" />
+
+        <!-- 风载荷激励 -->
+        <motor name="wind_force_x" joint="car_x" ctrlrange="-50 50" ctrllimited="true"/>
+
+        <!-- 曳引绳激励 -->
+        <motor name="rope_force" joint="frame_x" ctrlrange="-200 200" ctrllimited="true"/>
+    </actuator>
+
+    <!-- 传感器 -->
+    <sensor>
+        <!-- 轿架传感器 --><!-- 无角加速度测量 -->
+        <jointpos name="frame_x_pos" joint="frame_x"/>
+        <jointvel name="frame_x_vel" joint="frame_x"/>
+        <accelerometer name="frame_x_acc" site="frame0"/>
+        <jointpos name="frame_r_pos" joint="frame_r"/>
+        <jointvel name="frame_r_vel" joint="frame_r"/>
+        <gyro name="frame_r_acc" site="frame0"/>
+
+        <!-- 轿厢传感器 --><!-- 无角加速度测量 -->
+        <jointpos name="car_x_pos" joint="car_x"/>
+        <jointvel name="car_x_vel" joint="car_x"/>
+        <accelerometer name="car_x_acc" site="car0"/>
+        <jointpos name="car_r_pos" joint="car_r"/>
+        <jointvel name="car_r_vel" joint="car_r"/>
+        <gyro name="car_r_acc" site="car0"/>
+    </sensor>
+
+</mujoco>
