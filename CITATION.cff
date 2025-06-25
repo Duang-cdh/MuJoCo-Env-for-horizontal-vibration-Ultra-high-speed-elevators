@@ -1,0 +1,19 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  MuJoCo Model for Horizontal Vibration of Ultra-High-Speed
+  Elevator
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Donghang
+    family-names: Cai
+    email: 2524507105@qq.com
+    affiliation: Shandong Jianzhu University
+    orcid: 'https://orcid.org/0009-0002-2669-2271'
+repository-code: >-
+  https://github.com/Duang-cdh/MuJoCo-Env-for-horizontal-vibration-Ultra-high-speed-elevators
